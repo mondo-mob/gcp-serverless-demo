@@ -10,14 +10,13 @@ Click on the button below to go to the tutorial.
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/mondo-mob/gcp-serverless-demo.git&cloudshell_workspace=/&cloudshell_tutorial=etc/docs/cloudshell_tutorial.md)
 
-You will be asked to trust the repo (as it's not managed by Google). You will also be asked for your Github credentials
-in order to download the code (as it's currently a private repo).
+You will be asked to trust the repo (as it's not managed by Google). 
 
 ## Overview
 
 If you'd prefer to set the app up manually, follow the instructions below.
 
-This is a non-trivial serverless web application using NodeJS 10 and the following services:
+This is a non-trivial serverless web application using NodeJS and the following services:
 
 - Web app server (App Engine)
 - Task queue (Cloud tasks)
@@ -57,7 +56,7 @@ instance running which is not an issue for demo, but may incur charges if you le
 
 Launch the Google Cloud Shell (top right nav) - this will be your dev machine for the demo.
 
-Check out the code (you will need to provide your GitHub credentials, as this is a private repository):
+Check out the code:
 
 ```
 git clone https://github.com/mondo-mob/gcp-serverless-demo.git
@@ -86,7 +85,7 @@ Type something in, hit \<return\> and it should play it back to you once it's st
 
 ## Pseudo load test
 
-To demonstrate App Engine auto-scaling, you can run:
+To demonstrate App Engine auto-scaling, the following command executes 1000 requests with 60 at a time in parallel:
 
 ```bash
 seq 1000 | parallel -i -j 60 curl -s -o /dev/null -w "{}:" "https://<PROJECT_ID>.appspot.com/test?load={}"
@@ -96,6 +95,15 @@ Note: on a Mac, you may need to install `parallel` which can be done by running 
 
 ```bash
 brew install parallel
+```
+
+If you are running `zsh` and get an error like so, then you will need to escape the `?`
+```bash
+zsh:1: no matches found <url>
+```
+
+```bash
+seq 1000 | parallel -i -j 60 curl -s -o /dev/null -w "{}:" "https://<PROJECT_ID>.appspot.com/test\?load={}"
 ```
 
 # Local dev
