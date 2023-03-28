@@ -2,7 +2,7 @@ const bunyan = require("bunyan");
 const { LoggingBunyan } = require("@google-cloud/logging-bunyan");
 
 const logger = bunyan.createLogger({
-  name: "hello-appengine",
+  name: "gcp-serverless-demo",
   streams: [
     {
       stream: process.stdout,
