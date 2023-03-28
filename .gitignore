@@ -1,0 +1,7 @@
+credentials.json
+node_modules
+*.iml
+.idea
+.DS_Store
+.theia
+!/.idea/
